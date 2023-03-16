@@ -11,3 +11,11 @@ Mobile application :
 <br>
 <br>
 </h1>
+
+<h6>
+  Login And Register Pages
+<br>
+  <img src="./Design - Figma/login-register.png" alt="" >
+<br>
+<br>
+</h6>
