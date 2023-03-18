@@ -53,4 +53,25 @@ class AuthController extends ApiController
         $message = 'Created Successfully';
         return $this->sendResponse(new UserResource($user), $message);
     }
+
+      /****LogIn Function*****/
+    public function login(Request $request)
+    {        
+        $validator = Validator::make($request->all(), [
+             'email' => 'required|email',
+             'password' => 'required|min:6',
+        ]);
+        if ($validator->fails()) {
+            return $this->sendError('Please check your e-mail and password.');
+        }
+            if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            $auth = Auth::user();
+            $auth['token'] = $auth->createToken('UserAuth', ['user'])->plainTextToken;
+          
+            $message = 'Login successful';
+            return $this->sendResponse(new UserResource($auth), $message);
+        } else {
+            return $this->sendError('Login failed.');
+        }
+    }
 }
