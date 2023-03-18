@@ -12,6 +12,7 @@ use App\Models\User;
 
 class AuthController extends ApiController
 {
+    /****Register Function*****/
     public function register(Request $request)
     {
         $messages = [
@@ -49,7 +50,7 @@ class AuthController extends ApiController
             'city_id' =>$request->cityId,
             'gender' => $request->gender,
         ]);
-        
+        $user['token'] = $user->createToken('user')->plainTextToken;
         $message = 'Created Successfully';
         return $this->sendResponse(new UserResource($user), $message);
     }
@@ -72,6 +73,15 @@ class AuthController extends ApiController
             return $this->sendResponse(new UserResource($auth), $message);
         } else {
             return $this->sendError('Login failed.');
+        }
+    }
+    /****Logout Function*****/
+    public function logOut(Request $request){
+        try{
+            $request->user()->tokens()->delete();
+            return response()->json(['status'=>'true','message'=>"Checked Out",'data'=>[]]);
+        } catch(\Exception $e){
+            return response()->json(['status'=>'false','message'=>$e->getMessage(),'data'=>[]],500);
         }
     }
 }
