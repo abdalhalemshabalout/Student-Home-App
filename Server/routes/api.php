@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\GroupController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,4 +34,6 @@ Route::group([
     'prefix' => 'user'
 ], function(){
     Route::get('profile',[UserController::class, 'profile'])->middleware(('auth:sanctum'));
+    Route::post('create-group',[GroupController::class, 'createGroup'])->middleware(('auth:sanctum'));
+    
 });

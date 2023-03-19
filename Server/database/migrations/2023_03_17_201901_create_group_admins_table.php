@@ -15,14 +15,8 @@ class CreateGroupAdminsTable extends Migration
     {
         Schema::create('group_admins', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('user_id')
-                ->constrained('users')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-            $table->foreignId('group_id')
-                ->constrained('groups')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
+            $table->string('user_id');
+            $table->string('group_id');
             $table->timestamps();
         });
     }
