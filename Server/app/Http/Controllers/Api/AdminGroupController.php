@@ -23,17 +23,17 @@ class AdminGroupController extends ApiController
             return $this->sendError($message);
         }
     }
-    //Delete Announcement
-    // public function DeleteUserFromGroup($id){
-    //     try {
-    //         $user_find = GroupUser::find($id);
-    //         $delete_user = $user_find->delete();
-    //         $message = "User Deleted.";
-    //         return $this->sendResponse($delete_user, $message);
-    //     }catch (\Exception $e) {
-    //             $message = "Something went wrong.";
-    //             return $this->sendError($message);
-    //     }
-    // }
+    //Delete User From Group
+    public function DeleteUserFromGroup($id){
+        try {
+            $user_find = GroupUser::find($id);
+            $delete_user = $user_find->delete();
+            $message = "User Deleted.";
+            return $this->sendResponse($delete_user, $message);
+        }catch (\Exception $e) {
+                $message = "Something went wrong.";
+                return $this->sendError($message);
+        }
+    }
    
 }

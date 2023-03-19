@@ -36,7 +36,7 @@ Route::group([
     'prefix' => 'admin'
 ], function () {
     Route::post('add-user-to-group', [AdminGroupController::class, 'addUserToGroup'])->middleware('auth:sanctum');
-    Route::post('delete-user-from-group', [AdminGroupController::class, 'DeleteUserFromGroup'])->middleware('auth:sanctum');
+    Route::delete('delete-user-from-group/{id}', [AdminGroupController::class, 'DeleteUserFromGroup'])->middleware('auth:sanctum');
 
 });
 
