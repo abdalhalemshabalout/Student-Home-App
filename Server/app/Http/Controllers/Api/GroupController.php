@@ -22,10 +22,11 @@ class GroupController extends ApiController
         // take user id from request
         $user = User::where('id','=',$request->user()->id)
         ->select('id')->get();
+        $userId =$user[0]['id'];
         // create group admin
         GroupAdmin::create([
             'group_id'=>$group_id->id,
-            'user_id'=>$user
+            'user_id'=>$userId
         ]);
         $message='Created Successfuly';
         return $this->sendResponse(new GroupResource($create_group),$message);

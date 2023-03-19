@@ -2,9 +2,12 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\AdminGroupController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\GroupController;
+use App\Http\Controllers\Api\ListController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -29,11 +32,26 @@ Route::group([
     Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
 });
+Route::group([
+    'prefix' => 'admin'
+], function () {
+    Route::post('add-user-to-group', [AdminGroupController::class, 'addUserToGroup'])->middleware('auth:sanctum');
+    Route::post('delete-user-from-group', [AdminGroupController::class, 'DeleteUserFromGroup'])->middleware('auth:sanctum');
+
+});
 
 Route::group([
     'prefix' => 'user'
 ], function(){
     Route::get('profile',[UserController::class, 'profile'])->middleware(('auth:sanctum'));
     Route::post('create-group',[GroupController::class, 'createGroup'])->middleware(('auth:sanctum'));
+});
+
+Route::group([
+    'prefix' => 'list'
+], function(){
+    Route::get('get-users',[ListController::class, 'getUsers'])->middleware(('auth:sanctum'));
     
+    Route::post('get-group-admins',[ListController::class, 'getGroupAdmins'])->middleware(('auth:sanctum'));
+    Route::post('get-group-users',[ListController::class, 'getGroupUsers'])->middleware(('auth:sanctum'));
 });
