@@ -31,4 +31,18 @@ class GroupController extends ApiController
         $message='Created Successfuly';
         return $this->sendResponse(new GroupResource($create_group),$message);
     }
+    //Update Group name
+    public function updateGroupName(Request $request ,$id){
+        try {
+            $update_group_name = Group::where('id', $id)->update([
+                'name' =>$request->name 
+            ]);
+            $message = 'Group name updated successfully.';
+            return $this->sendResponse($update_group_name, $message);
+        } catch (\Exception $e) {
+            $message = 'Group name could not be updated.';
+            return $this->sendError($message);
+        }
+    }
+   
 }
