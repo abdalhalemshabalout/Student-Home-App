@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\GroupController;
 use App\Http\Controllers\Api\ListController;
+use App\Http\Controllers\Api\ProductController;
 
 
 /*
@@ -46,6 +47,10 @@ Route::group([
     Route::get('profile',[UserController::class, 'profile'])->middleware(('auth:sanctum'));
     Route::post('create-group',[GroupController::class, 'createGroup'])->middleware(('auth:sanctum'));
     Route::post('update-group-name/{id}', [GroupController::class, 'updateGroupName'])->middleware('auth:sanctum');
+
+    //Product
+    Route::post('add-product',[ProductController::class, 'AddProduct'])->middleware(('auth:sanctum'));
+    
 });
 
 Route::group([
