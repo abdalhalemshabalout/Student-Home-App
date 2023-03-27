@@ -15,8 +15,8 @@ class CreateGroupAdminsTable extends Migration
     {
         Schema::create('group_admins', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('user_id');
-            $table->string('group_id');
+            $table->integer('user_id');
+            $table->integer('group_id');
             $table->timestamps();
         });
     }

@@ -44,6 +44,7 @@ Route::group([
     'prefix' => 'user'
 ], function(){
     Route::get('profile',[UserController::class, 'profile'])->middleware(('auth:sanctum'));
+    Route::post('update-user-info/{id}', [UserController::class, 'updateUserInfo'])->middleware('auth:sanctum');
     Route::post('create-group',[GroupController::class, 'createGroup'])->middleware(('auth:sanctum'));
     Route::post('update-group-name/{id}', [GroupController::class, 'updateGroupName'])->middleware('auth:sanctum');
 });
@@ -54,4 +55,7 @@ Route::group([
     Route::get('get-users',[ListController::class, 'getUsers'])->middleware(('auth:sanctum'));
     Route::post('get-group-admins',[ListController::class, 'getGroupAdmins'])->middleware(('auth:sanctum'));
     Route::post('get-group-users',[ListController::class, 'getGroupUsers'])->middleware(('auth:sanctum'));
+    Route::post('my-admin-groups',[ListController::class, 'myAdminGroups'])->middleware(('auth:sanctum'));
+    Route::post('my-user-groups',[ListController::class, 'myUserGroups'])->middleware(('auth:sanctum'));
+    Route::post('my-groups',[ListController::class, 'mygroups'])->middleware(('auth:sanctum'));
 });
