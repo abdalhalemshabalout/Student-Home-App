@@ -8,7 +8,7 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\GroupController;
 use App\Http\Controllers\Api\ListController;
 use App\Http\Controllers\Api\ProductController;
-
+use App\Http\Controllers\Api\GroupAnnouncementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +38,9 @@ Route::group([
 ], function () {
     Route::post('add-user-to-group', [AdminGroupController::class, 'addUserToGroup'])->middleware('auth:sanctum');
     Route::delete('delete-user-from-group/{id}', [AdminGroupController::class, 'DeleteUserFromGroup'])->middleware('auth:sanctum');
+    
+    //Announcement
+    Route::post('add-announcement',[GroupAnnouncementController::class, 'addAnnouncement'])->middleware(('auth:sanctum'));
 
 });
 

@@ -24,11 +24,11 @@ class ProductController extends ApiController
             'amount'=> $request->amount,
             'price'=> $request->price
         ]);
-        $message = 'add prodcut successflluy';
+        $message = 'add prodcut successfully';
         return $this->sendResponse(new ProductResource($add_product),$message);
        }catch(\Exception $e){
         $message = 'Something went wrong.';
-        return $this->sendError($message);
-       }
+        return $this->sendError($e->getMessage());       
+    }
     } 
 }
