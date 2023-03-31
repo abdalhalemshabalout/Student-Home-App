@@ -23,5 +23,19 @@ class GroupAnnouncementController extends ApiController
          $message = 'Something went wrong.';
          return $this->sendError($e->getMessage());       
      }
-     } 
+     }
+
+            //delete announcement
+        public function deleteAnnouncement(Request  $request, $id){
+            
+            try{
+            $announcement_find=GroupAnnouncement::find($id);
+            $delete_announcement=$announcement_find->delete();
+            $message="Announcement deleted.";
+            return $this->sendResponse($delete_announcement,$message);
+            }catch(\Exception $e){
+                $message="Something went wrong.";
+                return $this->sendError($message);
+            }
+        }
 }

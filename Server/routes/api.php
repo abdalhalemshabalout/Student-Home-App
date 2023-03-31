@@ -41,6 +41,7 @@ Route::group([
     
     //Announcement
     Route::post('add-announcement',[GroupAnnouncementController::class, 'addAnnouncement'])->middleware(('auth:sanctum'));
+    Route::delete('delete-announcement/{id}',[GroupAnnouncementController::class, 'deleteAnnouncement'])->middleware(('auth:sanctum'));
 
 });
 
