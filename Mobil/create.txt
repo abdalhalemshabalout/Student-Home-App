@@ -1,0 +1,3 @@
+expo init FirstProject
+cd FirstProject
+npm start
